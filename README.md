@@ -13,6 +13,7 @@ Usage with drone:
       build:
         image: solutiondrive/docker-aws-packer-ansible
         target: base.json
+        working_directory: /opt/dir # optional
         aws_account_id: 123456789   # optional
         aws_role: role name         # optional
         aws_region: eu-central-1    # optional

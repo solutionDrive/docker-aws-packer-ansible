@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-if [ "${PLUGIN_AWS_ACCOUNT_ID}" == "none" ]; then
+if [ -n "${PLUGIN_AWS_ACCOUNT_ID}" ]; then
     PLUGIN_AWS_ACCOUNT_ID="IAM Role"
 fi
 

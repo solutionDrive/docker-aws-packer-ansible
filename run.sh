@@ -27,16 +27,15 @@ fi
 
 echo "Packer build starting..."
 
-target="${PLUGIN_TARGET:-${target}}"
-if [ "${target}" = "" ]; then
+if [ "${PLUGIN_TARGET}" = "" ]; then
     echo "Required attribute missing: target"
 fi
 
-echo "Build target: ${target}"
+echo "Build target: ${PLUGIN_TARGET}"
 
 if [ -n "${PLUGIN_WORKING_DIRECTORY}" ]; then
     echo "Change to working directory: ${PLUGIN_WORKING_DIRECTORY}"
     cd ${PLUGIN_WORKING_DIRECTORY}
 fi
 
-packer build "${target}"
+packer build "${PLUGIN_TARGET}"

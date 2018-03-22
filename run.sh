@@ -12,6 +12,7 @@ if [ "${PLUGIN_AWS_ACCOUNT_ID}" != "IAM Role" ]; then
 
     if [ "${PLUGIN_AWS_ROLE}" = "" ]; then
         echo "Required attribute missing: aws_role"
+        exit 1
     fi
 
     echo "Role: ${PLUGIN_AWS_ROLE}"
@@ -29,6 +30,7 @@ echo "Packer build starting..."
 
 if [ "${PLUGIN_TARGET}" = "" ]; then
     echo "Required attribute missing: target"
+    exit 1
 fi
 
 echo "Build target: ${PLUGIN_TARGET}"

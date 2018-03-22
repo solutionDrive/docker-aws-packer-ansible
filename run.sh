@@ -1,9 +1,6 @@
 #!/bin/bash
 
-
-if [ -n "${PLUGIN_AWS_ACCOUNT_ID}" ]; then
-    PLUGIN_AWS_ACCOUNT_ID="IAM Role"
-fi
+PLUGIN_AWS_ACCOUNT_ID=${PLUGIN_AWS_ACCOUNT_ID:-'IAM Role'}
 
 echo "AWS credentials:"
 echo "Account ID: ${PLUGIN_AWS_ACCOUNT_ID}"
@@ -15,6 +12,7 @@ if [ "${PLUGIN_AWS_ACCOUNT_ID}" != "IAM Role" ]; then
 
     if [ "${PLUGIN_AWS_ROLE}" = "" ]; then
         echo "Required attribute missing: aws_role"
+        exit 1
     fi
 
     echo "Role: ${PLUGIN_AWS_ROLE}"
@@ -30,16 +28,16 @@ fi
 
 echo "Packer build starting..."
 
-target="${PLUGIN_TARGET:-${target}}"
-if [ "${target}" = "" ]; then
+if [ "${PLUGIN_TARGET}" = "" ]; then
     echo "Required attribute missing: target"
+    exit 1
 fi
 
-echo "Build target: ${target}"
+echo "Build target: ${PLUGIN_TARGET}"
 
 if [ -n "${PLUGIN_WORKING_DIRECTORY}" ]; then
     echo "Change to working directory: ${PLUGIN_WORKING_DIRECTORY}"
     cd ${PLUGIN_WORKING_DIRECTORY}
 fi
 
-packer build "${target}"
+packer build "${PLUGIN_TARGET}"

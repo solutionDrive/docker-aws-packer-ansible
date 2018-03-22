@@ -1,9 +1,6 @@
 #!/bin/bash
 
-
-if [ -n "${PLUGIN_AWS_ACCOUNT_ID}" ]; then
-    PLUGIN_AWS_ACCOUNT_ID="IAM Role"
-fi
+PLUGIN_AWS_ACCOUNT_ID=${PLUGIN_AWS_ACCOUNT_ID:-'IAM Role'}
 
 echo "AWS credentials:"
 echo "Account ID: ${PLUGIN_AWS_ACCOUNT_ID}"

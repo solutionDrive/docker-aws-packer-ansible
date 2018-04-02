@@ -46,4 +46,10 @@ if [ -n "${PLUGIN_VAULTPASS_CONTENT}" ]; then
     echo $PLUGIN_VAULTPASS_CONTENT > "${VAULTPASS_PATH}"
 fi
 
+if [ -n "${PLUGIN_RUN_ANSIBLE_GALAXY_INSTALL" ]; then
+    REQUIREMENTS_PATH=${PLUGIN_REQUIREMENTS_PATH:-'requirements.yml'}
+    echo "Running ansible-galaxy install"
+    ansible-galaxy -r "${REQUIREMENTS_PATH}"
+fi
+
 packer build "${PLUGIN_TARGET}"

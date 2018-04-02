@@ -41,9 +41,9 @@ if [ -n "${PLUGIN_WORKING_DIRECTORY}" ]; then
 fi
 
 if [ -n "${PLUGIN_VAULTPASS_CONTENT}" ]; then
-    vaultpass_filepath=${PLUGIN_VAULTPASS_FILEPATH:-'vaultpass'}
-    echo "Settings vaultpass content to '${VAULTPASS_FILEPATH}'"
-    echo $PLUGIN_VAULTPASS_CONTENT > $VAULTPASS_FILEPATH
+    vaultpass_path=${PLUGIN_VAULTPASS_FILEPATH:-'vaultpass'}
+    echo "Settings vaultpass content to '${VAULTPASS_PATH}'"
+    echo $PLUGIN_VAULTPASS_CONTENT > $VAULTPASS_PATH
 fi
 
 packer build "${PLUGIN_TARGET}"

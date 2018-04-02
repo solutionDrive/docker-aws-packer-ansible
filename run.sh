@@ -46,7 +46,7 @@ if [ -n "${PLUGIN_ANSIBLE_VAULTPASS_CONTENT}" ]; then
     echo $PLUGIN_ANSIBLE_VAULTPASS_CONTENT > "${ANSIBLE_VAULTPASS_PATH}"
 fi
 
-if [ -n "${PLUGIN_ANSIBLE_RUN_GALAXY_INSTALL" ]; then
+if [ -n "${PLUGIN_ANSIBLE_RUN_GALAXY_INSTALL}" ]; then
     ANSIBLE_REQUIREMENTS_PATH=${PLUGIN_ANSIBLE_ANSIBLE_REQUIREMENTS_PATH:-'requirements.yml'}
     echo "Running ansible-galaxy install"
     ansible-galaxy -r "${ANSIBLE_REQUIREMENTS_PATH}"

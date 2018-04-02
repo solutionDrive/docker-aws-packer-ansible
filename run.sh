@@ -40,16 +40,16 @@ if [ -n "${PLUGIN_WORKING_DIRECTORY}" ]; then
     cd ${PLUGIN_WORKING_DIRECTORY}
 fi
 
-if [ -n "${PLUGIN_VAULTPASS_CONTENT}" ]; then
-    VAULTPASS_PATH=${PLUGIN_VAULTPASS_FILEPATH:-'vaultpass'}
-    echo "Settings vaultpass content to '${VAULTPASS_PATH}'"
-    echo $PLUGIN_VAULTPASS_CONTENT > "${VAULTPASS_PATH}"
+if [ -n "${PLUGIN_ANSIBLE_VAULTPASS_CONTENT}" ]; then
+    ANSIBLE_VAULTPASS_PATH=${PLUGIN_ANSIBLE_VAULTPASS_FILEPATH:-'vaultpass'}
+    echo "Settings vaultpass content to '${ANSIBLE_VAULTPASS_PATH}'"
+    echo $PLUGIN_ANSIBLE_VAULTPASS_CONTENT > "${ANSIBLE_VAULTPASS_PATH}"
 fi
 
-if [ -n "${PLUGIN_RUN_ANSIBLE_GALAXY_INSTALL" ]; then
-    REQUIREMENTS_PATH=${PLUGIN_REQUIREMENTS_PATH:-'requirements.yml'}
+if [ -n "${PLUGIN_ANSIBLE_RUN_GALAXY_INSTALL" ]; then
+    ANSIBLE_REQUIREMENTS_PATH=${PLUGIN_ANSIBLE_ANSIBLE_REQUIREMENTS_PATH:-'requirements.yml'}
     echo "Running ansible-galaxy install"
-    ansible-galaxy -r "${REQUIREMENTS_PATH}"
+    ansible-galaxy -r "${ANSIBLE_REQUIREMENTS_PATH}"
 fi
 
 packer build "${PLUGIN_TARGET}"

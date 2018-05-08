@@ -22,6 +22,7 @@ Usage with drone:
         ansible_vaultpass_filepath: path/to/vaultpass           # optional (default: vaultpass)
         ansible_run_galaxy_install: true                        # optional
         ansible_ansible_requirements_path: path/to/requirements # optional (default: requirements)
+        packer_build_log_name: fancy-build.log                  # optional (default: build.log)
 
 
 If you want to use the container without drone, you have to inject the environment variables manually as:

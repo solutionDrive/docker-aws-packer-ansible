@@ -52,4 +52,6 @@ if [ -n "${PLUGIN_ANSIBLE_RUN_GALAXY_INSTALL}" ]; then
     ansible-galaxy install -r "${ANSIBLE_REQUIREMENTS_PATH}"
 fi
 
-packer build "${PLUGIN_TARGET}" | tee build.log
+PACKER_BUILD_LOG_NAME=${PLUGIN_PACKER_BUILD_LOG_NAME:-'build.log'}
+
+packer build "${PLUGIN_TARGET}" | tee ${PACKER_BUILD_LOG_NAME}

@@ -49,7 +49,7 @@ fi
 if [ -n "${PLUGIN_ANSIBLE_RUN_GALAXY_INSTALL}" ]; then
     ANSIBLE_REQUIREMENTS_PATH=${PLUGIN_ANSIBLE_ANSIBLE_REQUIREMENTS_PATH:-'requirements.yml'}
     echo "Running ansible-galaxy install"
-    ansible-galaxy install -r "${ANSIBLE_REQUIREMENTS_PATH}"
+    ansible-galaxy install -r "${ANSIBLE_REQUIREMENTS_PATH}" --ignore-errors
 fi
 
 PACKER_BUILD_LOG_NAME=${PLUGIN_PACKER_BUILD_LOG_NAME:-'build.log'}

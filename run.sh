@@ -1,5 +1,12 @@
 #!/bin/bash
 
+if [ -n "${PLUGIN_SSH_KEY}" ]; then
+    echo "Adding SSH Key..."
+    mkdir -p ~/.ssh/
+    echo $PLUGIN_SSH_KEY > ~/.ssh/id_rsa
+    chmod 0600 ~/.ssh/id_rsa
+fi
+
 PLUGIN_AWS_ACCOUNT_ID=${PLUGIN_AWS_ACCOUNT_ID:-'IAM Role'}
 
 echo "AWS credentials:"

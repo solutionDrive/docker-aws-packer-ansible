@@ -3,7 +3,7 @@
 if [ -n "${PLUGIN_SSH_KEY}" ]; then
     echo "Adding SSH Key..."
     mkdir -p ~/.ssh/
-    echo $PLUGIN_SSH_KEY > ~/.ssh/id_rsa
+    echo "$PLUGIN_SSH_KEY" > ~/.ssh/id_rsa
     chmod 0600 ~/.ssh/id_rsa
 fi
 

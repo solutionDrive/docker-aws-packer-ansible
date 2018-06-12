@@ -13,6 +13,7 @@ Usage with drone:
       build:
         image: solutiondrive/docker-aws-packer-ansible
         target: base.json
+        ssh_key: "this is a private ssh key"                    # optional (content of private ssh key => should be added as secret)
         working_directory: /opt/dir                             # optional
         aws_account_id: 123456789                               # optional (default: use IAM Role)
         aws_role: role name                                     # optional

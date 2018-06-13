@@ -10,6 +10,7 @@ RUN apk update && \
 
 ADD keyscan.sh /bin/keyscan.sh
 RUN chmod +x /bin/keyscan.sh && \
+    sync && \
     /bin/keyscan.sh github.com nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8 && \
     /bin/keyscan.sh bitbucket.org zzXQOXSRBEiUtuE8AikJYKwbHaxvSc0ojez9YXaGp1A
 

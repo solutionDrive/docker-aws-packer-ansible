@@ -24,4 +24,4 @@ deploy:
   provider: script
   script: bash dockerPush.sh
   on:
-    branch: master
+    branch: build-by-travis

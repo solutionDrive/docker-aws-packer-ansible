@@ -8,7 +8,7 @@ docker build \
 
 # Tag "latest"
 if [ "$LATEST" = "1" ]; then
-    docker tag solutiondrive/docker-aws-packer-ansible:packer$PACKER_VERSION-ansible$ANSIBLE_VERSION-awscli$AWSCLI_VERSION-inspec$INSPEC_VERSION \
-        solutiondrive/docker-aws-packer-ansible  \
+    docker tag \
+        solutiondrive/docker-aws-packer-ansible:packer$PACKER_VERSION-ansible$ANSIBLE_VERSION-awscli$AWSCLI_VERSION-inspec$INSPEC_VERSION \
         solutiondrive/docker-aws-packer-ansible:latest
 fi

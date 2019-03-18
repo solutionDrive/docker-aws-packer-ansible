@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 docker build \
     --build-arg PACKER_VERSION=$PACKER_VERSION  \
     --build-arg ANSIBLE_VERSION=$ANSIBLE_VERSION  \

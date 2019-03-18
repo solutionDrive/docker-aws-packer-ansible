@@ -9,11 +9,13 @@ ARG INSPEC_VERSION
 RUN apk update && \
     apk upgrade && \
     apk --no-cache add python2 py-pip py-setuptools ca-certificates ruby ruby-rdoc ruby-irb openssh-client && \
-    apk --no-cache add --virtual .sd-build-dependencies gcc libffi-dev openssl-dev build-base ruby-dev python2-dev linux-headers musl-dev && \
-    pip install awscli==${AWSCLI_VERSION} && \
-    gem install inspec -v ${INSPEC_VERSION} && \
-    pip install ansible==${ANSIBLE_VERSION} && \
-    apk --no-cache del .sd-build-dependencies
+    apk --no-cache add --virtual .sd-build-dependencies gcc libffi-dev openssl-dev build-base ruby-dev python2-dev linux-headers musl-dev
+
+RUN pip install awscli==${AWSCLI_VERSION} ansible==${ANSIBLE_VERSION}
+RUN gem install inspec -v ${INSPEC_VERSION}
+
+# Cleanup
+RUN apk --no-cache del .sd-build-dependencies
 
 ADD keyscan.sh /bin/keyscan.sh
 RUN chmod +x /bin/keyscan.sh && \

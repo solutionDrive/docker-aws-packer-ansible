@@ -1,11 +1,7 @@
-ARG PACKER_VERSION=1.2.1
-ARG ANSIBLE_VERSION=2.3.0.0
-ARG AWSCLI_VERSION=1.15.42
-ARG INSPEC_VERSION=2.2.16
+ARG PACKER_VERSION
 
 FROM hashicorp/packer:${PACKER_VERSION}
 
-ARG PACKER_VERSION
 ARG ANSIBLE_VERSION
 ARG AWSCLI_VERSION
 ARG INSPEC_VERSION
@@ -13,11 +9,15 @@ ARG INSPEC_VERSION
 RUN apk update && \
     apk upgrade && \
     apk --no-cache add python2 py-pip py-setuptools ca-certificates ruby ruby-rdoc ruby-irb openssh-client && \
-    apk --no-cache add --virtual .build-dependencies gcc libffi-dev openssl-dev build-base ruby-dev python2-dev linux-headers musl-dev && \
-    pip install awscli==${AWSCLI_VERSION} && \
-    gem install inspec -v ${INSPEC_VERSION} && \
-    pip install ansible==${ANSIBLE_VERSION} && \
-    apk --no-cache del .build-dependencies
+    apk --no-cache add --virtual .sd-build-dependencies gcc libffi-dev openssl-dev build-base ruby-dev python2-dev linux-headers musl-dev
+
+RUN pip install awscli==${AWSCLI_VERSION} ansible==${ANSIBLE_VERSION}
+RUN gem install inspec -v ${INSPEC_VERSION} \
+    && gem install ed25519
+
+# Cleanup
+RUN apk --no-cache del .sd-build-dependencies \
+    && rm -rf /tmp/*
 
 ADD keyscan.sh /bin/keyscan.sh
 RUN chmod +x /bin/keyscan.sh && \

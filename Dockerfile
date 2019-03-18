@@ -15,7 +15,8 @@ RUN pip install awscli==${AWSCLI_VERSION} ansible==${ANSIBLE_VERSION}
 RUN gem install inspec -v ${INSPEC_VERSION}
 
 # Cleanup
-RUN apk --no-cache del .sd-build-dependencies
+RUN apk --no-cache del .sd-build-dependencies \
+    && rm -rf /tmp/*
 
 ADD keyscan.sh /bin/keyscan.sh
 RUN chmod +x /bin/keyscan.sh && \

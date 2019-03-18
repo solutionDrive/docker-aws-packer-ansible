@@ -12,7 +12,8 @@ RUN apk update && \
     apk --no-cache add --virtual .sd-build-dependencies gcc libffi-dev openssl-dev build-base ruby-dev python2-dev linux-headers musl-dev
 
 RUN pip install awscli==${AWSCLI_VERSION} ansible==${ANSIBLE_VERSION}
-RUN gem install inspec -v ${INSPEC_VERSION}
+RUN gem install inspec -v ${INSPEC_VERSION} \
+    && gem install ed25519
 
 # Cleanup
 RUN apk --no-cache del .sd-build-dependencies \

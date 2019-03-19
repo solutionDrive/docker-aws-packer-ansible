@@ -13,7 +13,7 @@ RUN apk update && \
 
 RUN pip install awscli==${AWSCLI_VERSION} ansible==${ANSIBLE_VERSION}
 RUN gem install inspec -v ${INSPEC_VERSION} \
-    && gem install ed25519
+    && gem install ed25519 rbnacl rbnacl-libsodium bcrypt_pbkdf
 
 # Cleanup
 RUN apk --no-cache del .sd-build-dependencies \

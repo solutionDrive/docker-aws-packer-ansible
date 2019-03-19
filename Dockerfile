@@ -8,8 +8,12 @@ ARG INSPEC_VERSION
 
 RUN apk update && \
     apk upgrade && \
-    apk --no-cache add python2 py-pip py-setuptools ca-certificates ruby ruby-rdoc ruby-irb openssh-client && \
-    apk --no-cache add --virtual .sd-build-dependencies gcc libffi-dev openssl-dev build-base ruby-dev python2-dev linux-headers musl-dev
+    apk --no-cache add python3 ca-certificates ruby ruby-rdoc ruby-irb openssh-client && \
+    apk --no-cache add --virtual .sd-build-dependencies gcc libffi-dev openssl-dev build-base ruby-dev python3-dev linux-headers musl-dev
+
+# Configure python3
+RUN pip3 install --upgrade pip setuptools && \
+    ln -s /usr/bin/python3 /usr/bin/python
 
 RUN pip install awscli==${AWSCLI_VERSION} ansible==${ANSIBLE_VERSION}
 RUN gem install inspec -v ${INSPEC_VERSION} \

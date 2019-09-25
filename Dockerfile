@@ -23,12 +23,12 @@ RUN gem install inspec -v ${INSPEC_VERSION} \
 RUN apk --no-cache del .sd-build-dependencies \
     && rm -rf /tmp/*
 
-ADD keyscan.sh /bin/keyscan.sh
+ADD scripts/keyscan.sh /bin/keyscan.sh
 RUN chmod +x /bin/keyscan.sh && \
     sync && \
     /bin/keyscan.sh github.com nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8 && \
     /bin/keyscan.sh bitbucket.org zzXQOXSRBEiUtuE8AikJYKwbHaxvSc0ojez9YXaGp1A
 
-ADD run.sh /bin/run.sh
+ADD scripts/run.sh /bin/run.sh
 
 ENTRYPOINT ["/bin/bash", "/bin/run.sh"]

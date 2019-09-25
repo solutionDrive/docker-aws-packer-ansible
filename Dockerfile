@@ -27,7 +27,8 @@ ADD scripts/keyscan.sh /bin/keyscan.sh
 RUN chmod +x /bin/keyscan.sh && \
     sync && \
     /bin/keyscan.sh github.com nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8 && \
-    /bin/keyscan.sh bitbucket.org zzXQOXSRBEiUtuE8AikJYKwbHaxvSc0ojez9YXaGp1A
+    /bin/keyscan.sh bitbucket.org zzXQOXSRBEiUtuE8AikJYKwbHaxvSc0ojez9YXaGp1A && \
+    /bin/keyscan.sh gitlab.com ROQFvPThGrW4RuWLoL9tq9I9zJ42fK4XywyRtbOz/EQ
 
 ADD scripts/addSSHKey.sh /bin/addSSHKey.sh
 ADD scripts/aquireAWSSession.sh /bin/aquireAWSSession.sh

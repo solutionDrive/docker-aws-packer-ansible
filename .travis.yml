@@ -24,6 +24,8 @@ before_deploy:
 deploy:
   provider: script
   script: bash dockerPush.sh
+  on:
+    all_branches: true
 
 # Do some informational output
 after_script:

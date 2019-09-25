@@ -23,16 +23,11 @@ RUN gem install inspec -v ${INSPEC_VERSION} \
 RUN apk --no-cache del .sd-build-dependencies \
     && rm -rf /tmp/*
 
-ADD scripts/keyscan.sh /bin/keyscan.sh
-RUN chmod +x /bin/keyscan.sh && \
-    sync && \
+ADD scripts/* /bin/
+RUN chmod +x /bin/*
+RUN sync && \
     /bin/keyscan.sh github.com nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8 && \
     /bin/keyscan.sh bitbucket.org zzXQOXSRBEiUtuE8AikJYKwbHaxvSc0ojez9YXaGp1A && \
     /bin/keyscan.sh gitlab.com ROQFvPThGrW4RuWLoL9tq9I9zJ42fK4XywyRtbOz/EQ
-
-ADD scripts/addSSHKey.sh /bin/addSSHKey.sh
-ADD scripts/aquireAWSSession.sh /bin/aquireAWSSession.sh
-ADD scripts/packerBuild.sh /bin/packerBuild.sh
-ADD scripts/run.sh /bin/run.sh
 
 ENTRYPOINT ["/bin/bash", "-l", "-c"]

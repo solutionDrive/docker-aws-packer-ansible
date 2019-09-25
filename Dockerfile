@@ -34,4 +34,4 @@ ADD scripts/aquireAWSSession.sh /bin/aquireAWSSession.sh
 ADD scripts/packerBuild.sh /bin/packerBuild.sh
 ADD scripts/run.sh /bin/run.sh
 
-ENTRYPOINT ["/bin/bash", "/bin/run.sh"]
+ENTRYPOINT ["/bin/bash"]

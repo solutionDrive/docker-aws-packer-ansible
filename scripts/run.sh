@@ -2,6 +2,6 @@
 
 set -o pipefail
 
-/bin/bash ./addSSHKey.sh
-/bin/bash ./aquireAWSSession.sh
-/bin/bash ./packerBuild.sh
+/bin/bash /bin/addSSHKey.sh
+/bin/bash /bin/aquireAWSSession.sh
+/bin/bash /bin/packerBuild.sh

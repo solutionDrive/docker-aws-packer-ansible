@@ -26,4 +26,9 @@ if [ "${PLUGIN_AWS_ACCOUNT_ID}" != "IAM Role" ]; then
     export AWS_ACCESS_KEY_ID=$(echo "${iam_creds}" | grep AccessKeyId | tr -d '" ,' | cut -d ':' -f2)
     export AWS_SECRET_ACCESS_KEY=$(echo "${iam_creds}" | grep SecretAccessKey | tr -d '" ,' | cut -d ':' -f2)
     export AWS_SESSION_TOKEN=$(echo "${iam_creds}" | grep SessionToken | tr -d '" ,' | cut -d ':' -f2)
+
+    echo "[default]" > ~/.aws/credentials
+    echo "aws_access_key_id = $AWS_ACCESS_KEY_ID" >> ~/.aws/credentials
+    echo "aws_secret_access_key = $AWS_SECRET_ACCESS_KEY" >> ~/.aws/credentials
+    echo "aws_session_token = $AWS_SESSION_TOKEN" >> ~/.aws/credentials
 fi

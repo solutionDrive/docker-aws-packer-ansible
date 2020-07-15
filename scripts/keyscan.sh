@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -eo pipefail
 
 HOSTNAME_TO_CHECK=$1
 HOSTNAME_FINGERPRINT=$2

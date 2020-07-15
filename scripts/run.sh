@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -o pipefail
+set -eo pipefail
 
 /bin/bash /bin/addSSHKey.sh
 /bin/bash /bin/aquireAWSSession.sh

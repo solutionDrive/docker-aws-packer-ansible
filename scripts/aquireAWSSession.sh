@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -eo pipefail
+
 PLUGIN_AWS_ACCOUNT_ID=${PLUGIN_AWS_ACCOUNT_ID:-'IAM Role'}
 
 echo "AWS credentials:"

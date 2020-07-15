@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -o pipefail
+set -eo pipefail
 
 if [ -n "${PLUGIN_SSH_KEY}" ]; then
     echo "Adding SSH Key..."

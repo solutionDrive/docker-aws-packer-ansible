@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -eo pipefail
+
 echo "Packer build starting..."
 
 if [ "${PLUGIN_TARGET}" = "" ]; then

@@ -17,7 +17,8 @@ echo "Account ID: ${PLUGIN_AWS_ACCOUNT_ID}"
 region=${PLUGIN_AWS_REGION:-'eu-central-1'}
 
 if [ "${PLUGIN_AWS_ACCOUNT_ID}" != "IAM Role" ]; then
-    session_id=${PLUGIN_AWS_SESSION_ID:-"${DRONE_COMMIT_SHA:0:10}-${DRONE_BUILD_NUMBER}"}
+    GENERATED_SESSION_ID="${CI_COMMIT_SHA:0:10}-${CI_BUILD_NUMBER}-${CI_JOB_ID}-${CI_CONCURRENT_ID}"
+    session_id=${PLUGIN_AWS_SESSION_ID:-"${GENERATED_SESSION_ID:0:64}"}
 
     if [ "${PLUGIN_AWS_ROLE}" = "" ]; then
         echo "Required attribute missing: aws_role"

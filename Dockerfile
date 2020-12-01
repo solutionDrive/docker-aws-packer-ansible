@@ -8,8 +8,10 @@ ARG INSPEC_VERSION
 
 RUN apk update && \
     apk upgrade && \
-    apk --no-cache add python3 py3-pip ca-certificates ruby=2.6.6 ruby-rdoc ruby-irb openssh-client && \
+    apk del ruby && \
+    apk --no-cache add python3 py3-pip ca-certificates openssh-client ruby && \
     apk --no-cache add --virtual .sd-build-dependencies gcc libffi-dev openssl-dev build-base ruby-dev python3-dev linux-headers musl-dev
+
 
 # Configure python3
 RUN pip3 install --upgrade pip setuptools && \

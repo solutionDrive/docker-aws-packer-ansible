@@ -5,13 +5,31 @@ FROM hashicorp/packer:${PACKER_VERSION}
 ARG ANSIBLE_VERSION
 ARG AWSCLI_VERSION
 ARG INSPEC_VERSION
+ENV PATH /usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH
+ENV RBENV_ROOT /usr/local/rbenv
+ENV RUBY_VERSION 2.6.6
+ENV CONFIGURE_OPTS --disable-install-doc
 
 RUN apk update && \
     apk upgrade && \
-    apk del ruby && \
-    apk --no-cache add python3 py3-pip ca-certificates openssh-client ruby && \
-    apk --no-cache add --virtual .sd-build-dependencies gcc libffi-dev openssl-dev build-base ruby-dev python3-dev linux-headers musl-dev
+    apk --no-cache add python3 py3-pip ca-certificates openssh-client ruby ruby-rdoc ruby-irb bash && \
+    apk --no-cache add --virtual .sd-build-dependencies gcc libffi-dev openssl-dev git musl-dev curl shadow tar \
+        build-base ruby-dev python3-dev linux-headers gnupg procps yaml yaml-dev libtool make readline readline-dev zlib zlib-dev openssl libssl1.0 \
+        alpine-sdk imagemagick-dev wget vim qt-webkit xvfb autoconf bison bzip2 bzip2-dev coreutils gdbm-dev libc-dev \
+        libxml2-dev libxslt-dev ncurses-dev
 
+RUN git clone --depth 1 git://github.com/sstephenson/rbenv.git ${RBENV_ROOT} \
+        &&  git clone --depth 1 https://github.com/sstephenson/ruby-build.git ${RBENV_ROOT}/plugins/ruby-build \
+        &&  git clone --depth 1 git://github.com/jf/rbenv-gemset.git ${RBENV_ROOT}/plugins/rbenv-gemset \
+        && ${RBENV_ROOT}/plugins/ruby-build/install.sh
+
+RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh \
+&&  echo 'eval "$(rbenv init -)"' >> /root/.bashrc
+
+RUN rbenv install $RUBY_VERSION \
+&&  rbenv global $RUBY_VERSION
+
+RUN gem install bundler
 
 # Configure python3
 RUN pip3 install --upgrade pip setuptools && \

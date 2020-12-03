@@ -14,9 +14,12 @@ RUN apk update && \
     apk upgrade && \
     apk --no-cache add python3 py3-pip ca-certificates openssh-client ruby ruby-rdoc ruby-irb bash && \
     apk --no-cache add --virtual .sd-build-dependencies gcc libffi-dev openssl-dev git musl-dev curl shadow tar \
-        build-base ruby-dev python3-dev linux-headers gnupg procps yaml yaml-dev libtool make readline readline-dev zlib zlib-dev openssl libssl1.0 \
-        alpine-sdk imagemagick-dev wget vim qt-webkit xvfb autoconf bison bzip2 bzip2-dev coreutils gdbm-dev libc-dev \
+        build-base ruby-dev python3-dev linux-headers gnupg procps yaml yaml-dev libtool make readline readline-dev zlib zlib-dev openssl \
+        alpine-sdk imagemagick-dev wget vim xvfb autoconf bison bzip2 bzip2-dev coreutils gdbm-dev libc-dev \
         libxml2-dev libxslt-dev ncurses-dev
+
+RUN apk --no-cache add --virtual .sd-build-dependencies-failable libssl1.0 qt-webkit ;\
+    exit 0
 
 RUN git clone --depth 1 git://github.com/sstephenson/rbenv.git ${RBENV_ROOT} \
         &&  git clone --depth 1 https://github.com/sstephenson/ruby-build.git ${RBENV_ROOT}/plugins/ruby-build \
@@ -40,6 +43,7 @@ RUN gem install inspec -v ${INSPEC_VERSION} \
     && gem install ed25519 rbnacl rbnacl-libsodium bcrypt_pbkdf
 
 # Cleanup
+RUN apk --no-cache del .sd-build-dependencies-failable; exit 0
 RUN apk --no-cache del .sd-build-dependencies \
     && rm -rf /tmp/*
 

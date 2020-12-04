@@ -52,6 +52,7 @@ RUN python3 -c "import ssl; print(ssl.OPENSSL_VERSION);"
 RUN which openssl
 RUN which python
 RUN which python3
+RUN openssl version -d
 
 # Cleanup
 RUN apk --no-cache del .sd-build-dependencies-failable; exit 0

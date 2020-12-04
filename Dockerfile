@@ -65,5 +65,6 @@ ADD run.sh /bin/run.sh
 
 # DEBUG check openssl version
 RUN python3 -c "import ssl; print(ssl.OPENSSL_VERSION);"
+RUN ansible --version
 
 ENTRYPOINT ["/bin/bash", "/bin/run.sh"]

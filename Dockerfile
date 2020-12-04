@@ -46,6 +46,10 @@ RUN pip install awscli==${AWSCLI_VERSION} ansible==${ANSIBLE_VERSION}
 RUN gem install inspec -v ${INSPEC_VERSION} \
     && gem install ed25519 rbnacl rbnacl-libsodium bcrypt_pbkdf
 
+# DEBUG check openssl version
+RUN openssl version -a
+RUN python3 -c "import ssl; print(ssl.OPENSSL_VERSION);"
+
 # Cleanup
 RUN apk --no-cache del .sd-build-dependencies-failable; exit 0
 RUN apk --no-cache del .sd-build-dependencies \
@@ -60,7 +64,6 @@ RUN chmod +x /bin/keyscan.sh && \
 ADD run.sh /bin/run.sh
 
 # DEBUG check openssl version
-RUN openssl version -a
 RUN python3 -c "import ssl; print(ssl.OPENSSL_VERSION);"
 
 ENTRYPOINT ["/bin/bash", "/bin/run.sh"]

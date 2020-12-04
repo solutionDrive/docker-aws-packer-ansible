@@ -21,8 +21,8 @@ RUN apk update && \
 RUN apk --no-cache add --virtual .sd-build-dependencies-failable libssl1.0 qt-webkit ;\
     exit 0
 
-RUN git clone --depth 1 git://github.com/sstephenson/rbenv.git ${RBENV_ROOT} \
-        &&  git clone --depth 1 https://github.com/sstephenson/ruby-build.git ${RBENV_ROOT}/plugins/ruby-build \
+RUN git clone --depth 1 git://github.com/rbenv/rbenv.git ${RBENV_ROOT} \
+        &&  git clone --depth 1 https://github.com/rbenv/ruby-build.git ${RBENV_ROOT}/plugins/ruby-build \
         &&  git clone --depth 1 git://github.com/jf/rbenv-gemset.git ${RBENV_ROOT}/plugins/rbenv-gemset \
         && ${RBENV_ROOT}/plugins/ruby-build/install.sh
 

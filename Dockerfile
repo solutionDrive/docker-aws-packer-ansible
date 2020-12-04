@@ -34,6 +34,9 @@ RUN rbenv install $RUBY_VERSION \
 
 RUN gem install bundler
 
+# DEBUG check openssl version
+RUN openssl version -a
+
 # Configure python3
 RUN pip3 install --upgrade pip setuptools && \
     ln -s /usr/bin/python3 /usr/bin/python

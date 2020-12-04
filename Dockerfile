@@ -49,6 +49,9 @@ RUN gem install inspec -v ${INSPEC_VERSION} \
 # DEBUG check openssl version
 RUN openssl version -a
 RUN python3 -c "import ssl; print(ssl.OPENSSL_VERSION);"
+RUN which openssl
+RUN which python
+RUN which python3
 
 # Cleanup
 RUN apk --no-cache del .sd-build-dependencies-failable; exit 0

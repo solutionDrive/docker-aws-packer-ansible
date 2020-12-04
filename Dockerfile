@@ -42,7 +42,7 @@ RUN python3 -c "import ssl; print(ssl.OPENSSL_VERSION);"
 RUN pip3 install --upgrade pip setuptools && \
     ln -s /usr/bin/python3 /usr/bin/python
 
-RUN pip install awscli==${AWSCLI_VERSION} ansible==${ANSIBLE_VERSION}
+RUN pip3 install awscli==${AWSCLI_VERSION} ansible==${ANSIBLE_VERSION}
 RUN gem install inspec -v ${INSPEC_VERSION} \
     && gem install ed25519 rbnacl rbnacl-libsodium bcrypt_pbkdf
 

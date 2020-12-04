@@ -59,4 +59,8 @@ RUN chmod +x /bin/keyscan.sh && \
 
 ADD run.sh /bin/run.sh
 
+# DEBUG check openssl version
+RUN openssl version -a
+RUN python3 -c "import ssl; print(ssl.OPENSSL_VERSION);"
+
 ENTRYPOINT ["/bin/bash", "/bin/run.sh"]

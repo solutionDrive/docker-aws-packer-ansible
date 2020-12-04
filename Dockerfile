@@ -36,6 +36,7 @@ RUN gem install bundler
 
 # DEBUG check openssl version
 RUN openssl version -a
+RUN python3 -c "import ssl; print(ssl.OPENSSL_VERSION);"
 
 # Configure python3
 RUN pip3 install --upgrade pip setuptools && \
